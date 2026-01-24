@@ -6,7 +6,7 @@ A project to backport new modal features into interactions.py v5.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .components import *
 from .context import *

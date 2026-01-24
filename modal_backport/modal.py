@@ -9,9 +9,131 @@ from modal_backport.enums import ComponentType
 
 __all__ = (
     "FileUploadComponent",
+    "InputText",
     "LabelComponent",
     "Modal",
+    "ParagraphText",
+    "ShortText",
 )
+
+
+class InputText(ipy.InputText):
+    def __init__(
+        self,
+        *,
+        label: typing.Optional[str] = ipy.MISSING,
+        style: typing.Union[ipy.TextStyles, int],
+        custom_id: typing.Optional[str] = ipy.MISSING,
+        placeholder: typing.Optional[str] = ipy.MISSING,
+        value: typing.Optional[str] = ipy.MISSING,
+        required: bool = True,
+        min_length: typing.Optional[int] = ipy.MISSING,
+        max_length: typing.Optional[int] = ipy.MISSING,
+    ) -> None:
+        super().__init__(
+            label=label,
+            style=style,
+            custom_id=custom_id,
+            placeholder=placeholder,
+            value=value,
+            required=required,
+            min_length=min_length,
+            max_length=max_length,
+        )
+
+    @classmethod
+    def from_dict(cls, data: dict[str, typing.Any]) -> typing.Self:
+        if data["style"] == ipy.TextStyles.SHORT:
+            cls = ShortText
+        elif data["style"] == ipy.TextStyles.PARAGRAPH:
+            cls = ParagraphText
+
+        return cls(
+            label=data.get("label", ipy.MISSING),
+            custom_id=data["custom_id"],
+            placeholder=data["placeholder"],
+            value=data["value"],
+            required=data["required"],
+            min_length=data["min_length"],
+            max_length=data["max_length"],
+        )
+
+
+if typing.TYPE_CHECKING:
+
+    class ShortText(ipy.ShortText):
+        def __init__(
+            self,
+            *,
+            label: typing.Optional[str] = ipy.MISSING,
+            custom_id: typing.Optional[str] = ipy.MISSING,
+            placeholder: typing.Optional[str] = ipy.MISSING,
+            value: typing.Optional[str] = ipy.MISSING,
+            required: bool = True,
+            min_length: typing.Optional[int] = ipy.MISSING,
+            max_length: typing.Optional[int] = ipy.MISSING,
+        ) -> None: ...
+
+    class ParagraphText(ipy.ParagraphText):
+        def __init__(
+            self,
+            *,
+            label: typing.Optional[str] = ipy.MISSING,
+            custom_id: typing.Optional[str] = ipy.MISSING,
+            placeholder: typing.Optional[str] = ipy.MISSING,
+            value: typing.Optional[str] = ipy.MISSING,
+            required: bool = True,
+            min_length: typing.Optional[int] = ipy.MISSING,
+            max_length: typing.Optional[int] = ipy.MISSING,
+        ) -> None: ...
+
+else:
+
+    class ShortText(InputText):
+        def __init__(
+            self,
+            *,
+            label: typing.Optional[str] = ipy.MISSING,
+            custom_id: typing.Optional[str] = ipy.MISSING,
+            placeholder: typing.Optional[str] = ipy.MISSING,
+            value: typing.Optional[str] = ipy.MISSING,
+            required: bool = True,
+            min_length: typing.Optional[int] = ipy.MISSING,
+            max_length: typing.Optional[int] = ipy.MISSING,
+        ) -> None:
+            super().__init__(
+                style=ipy.TextStyles.SHORT,
+                label=label,
+                custom_id=custom_id,
+                placeholder=placeholder,
+                value=value,
+                required=required,
+                min_length=min_length,
+                max_length=max_length,
+            )
+
+    class ParagraphText(InputText):
+        def __init__(
+            self,
+            *,
+            label: typing.Optional[str] = ipy.MISSING,
+            custom_id: typing.Optional[str] = ipy.MISSING,
+            placeholder: typing.Optional[str] = ipy.MISSING,
+            value: typing.Optional[str] = ipy.MISSING,
+            required: bool = True,
+            min_length: typing.Optional[int] = ipy.MISSING,
+            max_length: typing.Optional[int] = ipy.MISSING,
+        ) -> None:
+            super().__init__(
+                style=ipy.TextStyles.PARAGRAPH,
+                label=label,
+                custom_id=custom_id,
+                placeholder=placeholder,
+                value=value,
+                required=required,
+                min_length=min_length,
+                max_length=max_length,
+            )
 
 
 class FileUploadComponent(ipy.BaseComponent):

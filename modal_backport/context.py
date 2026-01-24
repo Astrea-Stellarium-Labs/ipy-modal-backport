@@ -16,7 +16,7 @@ class UpdatedModalContextMixin:
     def from_dict(  # noqa: C901
         cls, client: "ipy.ClientT", payload: dict
     ) -> typing.Self:
-        instance = ipy.InteractionContext.from_dict(client, payload)
+        instance = super(ipy.ModalContext, cls).from_dict(client, payload)
         instance.responses = {}
 
         for component in payload["data"]["components"]:

@@ -123,7 +123,7 @@ class LabelComponent(ipy.BaseComponent):
         )
 
 
-class Modal:
+class Modal(ipy.Modal):
     def __init__(
         self,
         *components: ipy.InputText | LabelComponent,

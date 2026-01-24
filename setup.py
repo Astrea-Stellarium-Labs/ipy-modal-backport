@@ -13,7 +13,7 @@ setup(
     long_description=(Path(__file__).parent / "README.md").read_text(),
     long_description_content_type="text/markdown",
     author="AstreaTSS",
-    url="https://github.com/AstreaTSS/ipy-modal-backport",
+    url="https://github.com/Astrea-Stellarium-Labs/ipy-modal-backport",
     version="0.1.0",
     packages=find_packages(),
     python_requires=">=3.10",

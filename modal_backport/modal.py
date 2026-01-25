@@ -248,12 +248,14 @@ class LabelComponent(ipy.BaseComponent):
 class Modal(ipy.Modal):
     def __init__(
         self,
-        *components: ipy.InputText | LabelComponent,
+        *components: ipy.InputText | LabelComponent | ipy.TextDisplayComponent,
         title: str,
         custom_id: typing.Optional[str] = None,
     ) -> None:
         self.title: str = title
-        self.components: list[ipy.InputText | LabelComponent] = list(components)
+        self.components: list[
+            ipy.InputText | LabelComponent | ipy.TextDisplayComponent
+        ] = list(components)
         self.custom_id: str = custom_id or str(uuid.uuid4())
 
         self.type = ipy.CallbackType.MODAL
@@ -269,7 +271,7 @@ class Modal(ipy.Modal):
                         "components": [component.to_dict()],
                     }
                 )
-            elif isinstance(component, LabelComponent):
+            elif isinstance(component, (LabelComponent, ipy.TextDisplayComponent)):
                 dict_components.append(component.to_dict())
             else:
                 # backwards compatibility behavior, remove in v6
@@ -289,7 +291,9 @@ class Modal(ipy.Modal):
             },
         }
 
-    def add_components(self, *components: ipy.InputText | LabelComponent) -> None:
+    def add_components(
+        self, *components: ipy.InputText | LabelComponent | ipy.TextDisplayComponent
+    ) -> None:
         """
         Add components to the modal.
 

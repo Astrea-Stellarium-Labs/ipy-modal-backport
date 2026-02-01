@@ -176,8 +176,8 @@ class FileUploadComponent(ipy.BaseComponent):
     def from_dict(cls, data: dict) -> typing.Self:
         return cls(
             custom_id=data.get("custom_id"),
-            min_value=data.get("min_values"),
-            max_value=data.get("max_values"),
+            min_values=data.get("min_values"),
+            max_values=data.get("max_values"),
             required=data.get("required", True),
         )
 

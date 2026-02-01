@@ -142,8 +142,8 @@ class FileUploadComponent(ipy.BaseComponent):
 
     Attributes:
         custom_id: A unique identifier for the component.
-        min_value: The minimum number of files that can be uploaded.
-        max_value: The maximum number of files that can be uploaded.
+        min_values: The minimum number of files that can be uploaded.
+        max_values: The maximum number of files that can be uploaded.
         required: Whether the file upload is required.
 
     """
@@ -151,13 +151,13 @@ class FileUploadComponent(ipy.BaseComponent):
     def __init__(
         self,
         custom_id: typing.Optional[str] = None,
-        min_value: int = 1,
-        max_value: int = 1,
+        min_values: int = 1,
+        max_values: int = 1,
         required: bool = True,
     ):
         self.custom_id = custom_id or str(uuid.uuid4())
-        self.min_value = min_value
-        self.max_value = max_value
+        self.min_values = min_values
+        self.max_values = max_values
         self.required = required
         self.type = ComponentType.FILE_UPLOAD
 
@@ -166,8 +166,8 @@ class FileUploadComponent(ipy.BaseComponent):
             {
                 "type": self.type,
                 "custom_id": self.custom_id,
-                "min_value": self.min_value,
-                "max_value": self.max_value,
+                "min_values": self.min_values,
+                "max_values": self.max_values,
                 "required": self.required,
             }
         )
@@ -176,8 +176,8 @@ class FileUploadComponent(ipy.BaseComponent):
     def from_dict(cls, data: dict) -> typing.Self:
         return cls(
             custom_id=data.get("custom_id"),
-            min_value=data.get("min_value"),
-            max_value=data.get("max_value"),
+            min_value=data.get("min_values"),
+            max_value=data.get("max_values"),
             required=data.get("required", True),
         )
 

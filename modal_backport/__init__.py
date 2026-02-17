@@ -16,6 +16,9 @@ from .modal import *
 __all__ = (
     "BaseSelectMenu",
     "ChannelSelectMenu",
+    "CheckboxComponent",
+    "CheckboxGroupComponent",
+    "CheckboxGroupOption",
     "ComponentType",
     "DefaultableSelectMenu",
     "FileUploadComponent",
@@ -25,6 +28,8 @@ __all__ = (
     "Modal",
     "ModalContext",
     "ParagraphText",
+    "RadioGroupComponent",
+    "RadioGroupOption",
     "RoleSelectMenu",
     "ShortText",
     "StringSelectMenu",

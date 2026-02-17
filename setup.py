@@ -14,7 +14,7 @@ setup(
     long_description_content_type="text/markdown",
     author="AstreaTSS",
     url="https://github.com/Astrea-Stellarium-Labs/ipy-modal-backport",
-    version="0.3.1",
+    version="0.4.0",
     packages=find_packages(),
     python_requires=">=3.10",
     install_requires=requirements,
